@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KartGame.KartSystems;
 using UnityEngine;
+using TMPro;
 
 namespace KartGame.Track
 {
@@ -19,6 +20,8 @@ namespace KartGame.Track
         public List<Checkpoint> checkpoints = new List<Checkpoint> ();
         [Tooltip("Reference to an object responsible for repositioning karts.")]
         public KartRepositioner kartRepositioner;
+
+        public GameObject GameOverCanvas;
 
         bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
@@ -119,6 +122,8 @@ namespace KartGame.Track
                 m_RacerNextCheckpoints.Add (racer, checkpoints[0]);
                 racer.DisableControl ();
             }
+
+            GameOverCanvas.SetActive(false);
         }
 
         /// <summary>
@@ -150,6 +155,20 @@ namespace KartGame.Track
 
             TrackRecord.Save (m_HistoricalBestLap);
             TrackRecord.Save (m_HistoricalBestRace);
+
+            // Show current Race Time
+            TextMeshProUGUI lastRaceTime = GameOverCanvas.transform.Find("Main/Last Race Time").gameObject.GetComponent<TextMeshProUGUI>();
+            lastRaceTime.text = m_HistoricalBestLap.time.ToString("0.00") + "s";
+
+            // Check if new record
+            float bestTime = PlayerPrefs.GetFloat("BestTime");
+            if (m_HistoricalBestLap.time < bestTime) {
+                PlayerPrefs.SetFloat("BestTime", m_HistoricalBestLap.time);
+                GameOverCanvas.transform.Find("Main/NEW RECORD").gameObject.SetActive(true);
+            }
+
+            // Show Game Over Screen
+            GameOverCanvas.SetActive(true);
         }
 
         void CheckRacerHitCheckpoint (IRacer racer, Checkpoint checkpoint)

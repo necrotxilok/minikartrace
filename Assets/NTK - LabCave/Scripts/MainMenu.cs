@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using KartGame.Track;
 
 public class MainMenu : MonoBehaviour
 {
-	public GameObject bestLapTimeTextObject;
+	public TextMeshProUGUI bestTimeText;
 
     // Start is called before the first frame update
     void Start()
     {
-        float bestLapTime = PlayerPrefs.GetFloat("BestLapTime");
+        float bestTime = PlayerPrefs.GetFloat("BestTime");
 
-        if (!bestLapTimeTextObject) {
-        	Debug.Log("Please, assign a TextMeshPro Object to display Player Lap Time");
+        if (!bestTimeText) {
+        	Debug.LogWarning("Please, assign a TextMeshPro Object to display Player Best Time");
         	return;
         }
-        TextMeshPro bestLapTimeText = bestLapTimeTextObject.GetComponent<TextMeshPro>();
+		bestTimeText.gameObject.SetActive(true);
 
-        if (bestLapTime == 0.0f) {
-    		bestLapTimeTextObject.SetActive(false);
+        if (bestTime <= 0.0f) {
+    		bestTimeText.text = "Play and beat your best time!";
     		return;
         }
 
-		bestLapTimeTextObject.SetActive(true);
-		if (bestLapTime < 5.0f) {
-			bestLapTimeText.text = "Hey, are you cheating the game?";
+		if (bestTime < 5.0f) {
+			bestTimeText.text = "Hey, are you cheating the game?";
 			return;
 		}
 
-		bestLapTimeText.text = "Best Lap Time: " + bestLapTime + "s";
+		bestTimeText.text = "Best  Time: " + bestTime.ToString("0.00") + "s";
     }
 
 

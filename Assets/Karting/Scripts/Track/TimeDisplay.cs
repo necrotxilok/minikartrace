@@ -125,7 +125,7 @@ namespace KartGame.Track
 
         void DisplayRaceTime()
         {
-            m_StringBuilder.AppendLine($"Total: {m_Racer.GetRaceTime():.##}");
+            m_StringBuilder.AppendLine($"Total: {m_Racer.GetRaceTime():0.00}");
         }
 
         void DisplayAllLapTimes()
@@ -141,7 +141,7 @@ namespace KartGame.Track
 
                 if (i < lapTimes.Count)
                 {
-                    m_StringBuilder.AppendFormat(lapTimes[i].ToString(".##"));
+                    m_StringBuilder.AppendFormat(lapTimes[i].ToString("0.00"));
                 }
                 else
                 {
@@ -161,7 +161,7 @@ namespace KartGame.Track
                 m_StringBuilder.Append("Lap ");
                 m_StringBuilder.Append(i + 1);
                 m_StringBuilder.Append(": ");
-                m_StringBuilder.Append(lapTimes[i].ToString(".##"));
+                m_StringBuilder.Append(lapTimes[i].ToString("0.00"));
                 m_StringBuilder.Append('\n');
             }
         }
@@ -174,7 +174,7 @@ namespace KartGame.Track
                 m_StringBuilder.Append("Lap ");
                 m_StringBuilder.Append(i + 1);
                 m_StringBuilder.Append(": ");
-                m_StringBuilder.Append(lapTimes[i].ToString(".##"));
+                m_StringBuilder.Append(lapTimes[i].ToString("0.00"));
                 m_StringBuilder.Append('\n');
             }
 
@@ -185,7 +185,7 @@ namespace KartGame.Track
             m_StringBuilder.Append("Lap ");
             m_StringBuilder.Append(lapTimes.Count + 1);
             m_StringBuilder.Append(": ");
-            m_StringBuilder.Append(currentLapTime.ToString(".##"));
+            m_StringBuilder.Append(currentLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
@@ -196,7 +196,7 @@ namespace KartGame.Track
                 return;
 
             m_StringBuilder.Append("Current: ");
-            m_StringBuilder.Append(currentLapTime.ToString(".##"));
+            m_StringBuilder.Append(currentLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
@@ -207,7 +207,7 @@ namespace KartGame.Track
                 return;
 
             m_StringBuilder.Append("Session Best Lap: ");
-            m_StringBuilder.Append(bestLapTime.ToString(".##"));
+            m_StringBuilder.Append(bestLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
@@ -218,7 +218,7 @@ namespace KartGame.Track
                 return;
 
             m_StringBuilder.Append("Session Best Race: ");
-            m_StringBuilder.Append(bestLapTime.ToString(".##"));
+            m_StringBuilder.Append(bestLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
@@ -229,7 +229,7 @@ namespace KartGame.Track
                 return;
 
             m_StringBuilder.Append("Best Lap Ever: ");
-            m_StringBuilder.Append(bestLapTime.ToString(".##"));
+            m_StringBuilder.Append(bestLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
@@ -240,7 +240,7 @@ namespace KartGame.Track
                 return;
 
             m_StringBuilder.Append("Best Race Ever: ");
-            m_StringBuilder.Append(bestLapTime.ToString(".##"));
+            m_StringBuilder.Append(bestLapTime.ToString("0.00"));
             m_StringBuilder.Append('\n');
         }
 
