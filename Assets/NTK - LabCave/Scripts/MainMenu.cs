@@ -8,17 +8,24 @@ using KartGame.Track;
 public class MainMenu : MonoBehaviour
 {
 	public TextMeshProUGUI bestTimeText;
+	public TextMeshProUGUI totalCoinsText;
 
     // Start is called before the first frame update
     void Start()
     {
-        float bestTime = PlayerPrefs.GetFloat("BestTime");
-
         if (!bestTimeText) {
         	Debug.LogWarning("Please, assign a TextMeshPro Object to display Player Best Time");
         	return;
         }
-		bestTimeText.gameObject.SetActive(true);
+        if (!totalCoinsText) {
+        	Debug.LogWarning("Please, assign a TextMeshPro Object to display Player Best Time");
+        	return;
+        }
+
+    	int totalCoins = PlayerPrefs.GetInt("TotalCoins");
+    	totalCoinsText.text = "TOTAL COINS: " + totalCoins.ToString("0");
+
+        float bestTime = PlayerPrefs.GetFloat("BestTime");
 
         if (bestTime <= 0.0f) {
     		bestTimeText.text = "Play and beat your best time!";

@@ -22,6 +22,7 @@ namespace KartGame.Track
         public KartRepositioner kartRepositioner;
 
         public GameObject GameOverCanvas;
+        public CoinCounter coinCounter;
 
         bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
@@ -158,14 +159,27 @@ namespace KartGame.Track
 
             // Show current Race Time
             TextMeshProUGUI lastRaceTime = GameOverCanvas.transform.Find("Main/Last Race Time").gameObject.GetComponent<TextMeshProUGUI>();
-            lastRaceTime.text = m_HistoricalBestLap.time.ToString("0.00") + "s";
+            lastRaceTime.text = "RACE TIME: " + m_HistoricalBestLap.time.ToString("0.00") + "s";
 
             // Check if new record
             float bestTime = PlayerPrefs.GetFloat("BestTime");
-            if (m_HistoricalBestLap.time < bestTime) {
+            //Debug.Log(m_HistoricalBestLap.time + " " + bestTime);
+            if (bestTime == 0 || m_HistoricalBestLap.time < bestTime) {
                 PlayerPrefs.SetFloat("BestTime", m_HistoricalBestLap.time);
                 GameOverCanvas.transform.Find("Main/NEW RECORD").gameObject.SetActive(true);
             }
+
+            // Clear all coins
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+            foreach (GameObject coin in coins)
+            {
+                coin.SetActive(false);
+            }
+
+            // Store Total Coins
+            int totalCoins = PlayerPrefs.GetInt("TotalCoins");
+            int currentCoins = coinCounter.GetCoins();
+            PlayerPrefs.SetInt("TotalCoins", totalCoins + currentCoins);
 
             // Show Game Over Screen
             GameOverCanvas.SetActive(true);
