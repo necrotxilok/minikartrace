@@ -149,5 +149,5 @@ Esta es la configuración que he usado para compilar el APK del juego para ARM64
 ## Bugs conocidos
 
 1. En ocasiones al iniciar una carrera se pierde el sonido
-2. El tiempo de carrera final pasa a ser el tiempo de la mejor vuelta, guardando un tiempo muy bajo (Parece que es algo de la propia demo)
+2. En ocasiones el tiempo de carrera final pasa a ser el tiempo de la mejor vuelta, guardando un tiempo muy bajo en lugar del tiempo total de la carrera (Parece que es algo de la propia demo)
 
