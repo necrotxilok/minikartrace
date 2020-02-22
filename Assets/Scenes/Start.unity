@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScale: 1
   endScale: 1.5
-  duration: 0.2
+  duration: 0.05
   onAnimationEnd:
     m_PersistentCalls:
       m_Calls:
@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScale: 1
   endScale: 1.5
-  duration: 0.2
+  duration: 0.05
   onAnimationEnd:
     m_PersistentCalls:
       m_Calls:

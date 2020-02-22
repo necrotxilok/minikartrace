@@ -56,12 +56,14 @@ namespace KartGame.KartSystems
                 m_Acceleration = 0f;
 
             m_Steering = SimpleInput.GetAxis ("Horizontal");
+            /*
             if (m_Steering < -tolerance) 
                 m_Steering = -1f;
             else if (m_Steering > tolerance)
                 m_Steering = 1f;
             else
                 m_Steering = 0f;
+            */
 
             m_HopHeld = SimpleInput.GetButton ("Jump");
 
